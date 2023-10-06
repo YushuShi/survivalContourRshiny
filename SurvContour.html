@@ -1,0 +1,108 @@
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p>We provide SurvivalContour to show the predicted survival or
+cumulative incidence function (for competing risks data) over time for a
+single continuous covariate in the form of a contour plot. The estimate
+for survival probability is based on the Cox model, random survival
+forest or other parametric survival models, including the spline model,
+the generalized Gamma AFT model, the stable generalized Gamma AFT model,
+the Weibull AFT model, the log-logistic AFT model, and the log-Normal
+AFT model. The estimate for cumulative incidence function is based on
+the Fine and Gray model. For more complex deep neural network based
+models, such as DeepHit, due to the intricacy of manual tuning, we have
+not included them in this R Shiny app. Instead, we suggest users check
+out our easy-to-use R package, <a href="https://yushushi.shinyapps.io/survivalContour/">survivalContour</a>.</p>
+<!---
+For more details, please check our paper **SurvivalContour: Show Survival Prediction in Contour Plot**. We also provide an R package <https://cran.r-project.org/web/packages/aPCoA/index.html>.
+
+--->
+<div id="options" class="section level2">
+<h2>Options</h2>
+<p>After successfully loading the data, the shiny app will ask you to
+choose the time variable, event indicator variable, and the main
+continuous covariate for plotting the contour plot. We will ask you to
+specify the range of time and covariate for plotting the predicted
+survival or the probability of having the primary event. Users can
+select their preferred color scheme from a few popular choices, define
+the name of the continuous variable shown in the plot, and specify if
+they want to plot the confidence interval for 3D contour plot. Users can
+also adjust for other covariates but need to provide 1) whether the
+covariates are continuous; 2) the values on which the contour plot for
+the predicted survival is based.</p>
+</div>
+<div id="plot-result-in-r-shiny-app" class="section level2">
+<h2>Plot result in R shiny app</h2>
+<p>After clicking the button “Create Plots”, the R shiny app will
+automatically produce the colored 2D and 3D contour plots of the
+predicted survival probability (or probability of having the primary
+event in competing risks data scenario). It will provide the regression
+coefficient estimates and p-values for the continuous covariate of
+interest as well as those adjusted covariates. It will also give the
+estimated survival or cumulative incidence function at 5 quantiles of
+the covariate. Due to the current limitation of the underlying packages,
+we do not provide pointwise 95% confidence interval estimates for
+competing risks data. Users can download the contour plot and survival
+(CIF) plots with the plotting information.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
