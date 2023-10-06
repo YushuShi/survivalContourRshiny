@@ -1,9 +1,5 @@
-We provide SurvivalContour to show the predicted survival or cumulative incidence function (for competing risks data) over time for a single continuous covariate in the form of a contour plot. The estimate for survival probability is based on the Cox model, random survival forest or other parametric survival models, including the spline model, the generalized Gamma AFT model, the stable generalized Gamma AFT model, the Weibull AFT model, the log-logistic  AFT model, and the log-Normal AFT model. The estimate for cumulative incidence function is based on the Fine and Gray model. For more complex deep neural network based models, such as DeepHit, due to the intricacy of manual tuning, we have not included them in this R Shiny app. Instead, we suggest users check out our easy-to-use R package, [survivalContour](https://yushushi.shinyapps.io/survivalContour/).
+We provide SurvivalContour to show the predicted survival or cumulative incidence function (for competing risks data) over time for a single continuous covariate in the form of a contour plot. The estimate for survival probability is based on the Cox model, random survival forest or other parametric survival models, including the spline model, the generalized Gamma AFT model, the stable generalized Gamma AFT model, the Weibull AFT model, the log-logistic  AFT model, and the log-Normal AFT model. The estimate for cumulative incidence function is based on the Fine and Gray model. For more complex deep neural network based models, such as DeepHit, due to the intricacy of manual tuning, we have not included them in this R Shiny app. Instead, we suggest users check out our easy-to-use R package, [survivalContour](https://github.com/YushuShi/survivalContour).
 
-<!---
-For more details, please check our paper **SurvivalContour: Show Survival Prediction in Contour Plot**. We also provide an R package <https://cran.r-project.org/web/packages/aPCoA/index.html>. 
-
---->
 
 ## Options
 
