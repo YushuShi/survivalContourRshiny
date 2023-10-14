@@ -93,7 +93,7 @@ shinyUI(
                     tabPanel("Information",includeHTML('SurvContour.html')),
                     tabPanel("Survival Data",includeHTML('cox.html')),
                     tabPanel("Stratified Cox Model",includeHTML('strata.html'),value="strata"),
-                    tabPanel("Competing Risks Data",includeHTML('fg.html'),value="fg"),
+                    tabPanel("Competing Risks Data",includeHTML('fg2.html'),value="fg"),
                     tabPanel("Random Survival Forest",includeHTML('rf.html'),value="rf"),
                     tabPanel("Result",conditionalPanel(condition="input.getPlot!=0",
                                                  #tableOutput("pEffectsize"),
