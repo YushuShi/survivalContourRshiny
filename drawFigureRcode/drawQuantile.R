@@ -1,6 +1,6 @@
 output$drawQuantile<- renderImage({
   input$getPlot
-  heading<-ifelse(input$CoxorFG=="noComp","Predicted survival at the","Predicted CIF at the")
+  heading<-ifelse(identical(input$CoxorFG,"noComp"),"Predicted survival at the","Predicted CIF at the")
   predictPlot<-calculatePredict()
   dataTable<-filedata()
   contcov<-seq(input$covSlider[1],input$covSlider[2],length.out = 21)

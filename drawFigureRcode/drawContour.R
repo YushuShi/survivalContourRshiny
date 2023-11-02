@@ -6,14 +6,14 @@ output$drawContour<- renderPlotly({
   if(!identical(input$strata,"yes")){
     histData<-dataTable[,input$covariate]
     fig <- plot_ly(x = predictPlot$time, y = contcov, z= t(predictPlot$surv),
-                   colorbar = list(title =                                    ifelse(input$CoxorFG=="noComp",                                                                              "Predicted survival probability","Predicted CIF"),
+                   colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
                                    titleside='right'),
                    colorscale=input$colSche,type = "contour",
                    hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
                                          'being %{y:.2f},<br>the predicted ',
-                                         ifelse(input$CoxorFG=="noComp","survival","CIF"),
+                                         ifelse(identical(input$CoxorFG,"noComp"),"survival","CIF"),
                                          ' is %{z:.2f}<extra></extra>'))
-    fig <- fig %>% layout(title=list(text=ifelse(input$CoxorFG=="noComp",
+    fig <- fig %>% layout(title=list(text=ifelse(identical(input$CoxorFG,"noComp"),
                                          "Contour Plot of the Predicted Survival Probability",
                          "Contour Plot of the Predicted Cumulative Incidence Function"),
                          x=0.15),
@@ -36,7 +36,7 @@ output$drawContour<- renderPlotly({
       histData<-dataTable[dataTable[,input$strataCov]==strataList[i],input$covariate]
       histData<-histData[!is.na(histData)]
       temp <- plot_ly(x = predictPlot$time, y = contcov, z= t(predictPlot$surv[[i]]),
-                      colorbar = list(title =                                    ifelse(input$CoxorFG=="noComp",                                                                              "Predicted survival probability","Predicted CIF"),
+                      colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
                                       titleside='right'),
                       colorscale=input$colSche,type = "contour",
                      hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
