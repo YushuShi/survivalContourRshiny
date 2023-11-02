@@ -4,7 +4,7 @@ output$downloadQPlot <- downloadHandler(
     predictPlot<-calculatePredict()
     dataTable<-filedata()
     contcov<-seq(input$covSlider[1],input$covSlider[2],length.out = 21)
-    heading<-ifelse(input$CoxorFG=="Cox","Predicted survival at the","Predicted CIF at the")
+    heading<-ifelse(identical(input$CoxorFG,"Cox"),"Predicted survival at the","Predicted CIF at the")
     quantile0 <- tempfile("Min_",fileext = ".png")
     if(!identical(input$strata,"yes")){
       png(quantile0,width = 800,height = 400,pointsize = 20)
