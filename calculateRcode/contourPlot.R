@@ -6,13 +6,13 @@ contourPlot<-function(predictPlot, dataTable, contcov, indicator=NULL, strataNam
       y = contcov,
       z = predictPlot$surv,
       nlevels=11,
-      main = ifelse(input$CoxorFG=="Cox","Contour Plot of the Predicted Survival Probability",
+      main = ifelse(identical(input$CoxorFG,"Cox"),"Contour Plot of the Predicted Survival Probability",
                     "Contour Plot of the Predicted Cumulative Incidence Function"),
-      cex.main=ifelse(input$CoxorFG=="Cox",1,0.8),
+      cex.main=ifelse(identical(input$CoxorFG,"Cox"),1,0.8),
       #ylab = input$covName,
       xlab = "Time",
-      color.palette = ifelse(colSche=="default",function(n) hcl.colors(n, "YlOrRd", rev = TRUE),get(colSche)),
-      key.title = title(main = ifelse(input$CoxorFG=="Cox","Surival\n Probability",
+      color.palette = ifelse(identical(colSche,"default"),function(n) hcl.colors(n, "YlOrRd", rev = TRUE),get(colSche)),
+      key.title = title(main = ifelse(identical(input$CoxorFG,"Cox"),"Surival\n Probability",
                                       "Probability \n of Having \n Primary Event"),cex.main=0.5))
     mar.orig <- par("mar")
     w <- (3 + mar.orig[2]) * par("csi") * 2.54
@@ -34,7 +34,7 @@ contourPlot<-function(predictPlot, dataTable, contcov, indicator=NULL, strataNam
       cex.main=0.8,
       ylab = input$covName,
       xlab = "Time",
-      color.palette = ifelse(colSche=="default",function(n) hcl.colors(n, "YlOrRd", rev = TRUE),get(colSche)),
+      color.palette = ifelse(identical(colSche,"default"),function(n) hcl.colors(n, "YlOrRd", rev = TRUE),get(colSche)),
       key.title = title(main = "Surival\n Probability",cex.main=0.5))
     mar.orig <- par("mar")
     w <- (3 + mar.orig[2]) * par("csi") * 2.54

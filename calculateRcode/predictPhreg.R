@@ -55,7 +55,7 @@ predictPhreg <- function(object,newdata,times=NULL,individual.time=FALSE,tminus=
       if (object$p>0) {
         Ps <- Pt[strata==j,,drop=FALSE]
         Ps <- rbind(0,Ps)[where,,drop=FALSE]
-        #  print(Xs); print(varbeta); print(dim(Ps)); print((Xs %*% varbeta))
+       
         Xbeta <- Xs %*% varbeta
         seXbeta <- rowSums(Xbeta*Xs)^.5
         cov2 <- cov1 <- Xbeta %*% t(Ps*hazt[where])

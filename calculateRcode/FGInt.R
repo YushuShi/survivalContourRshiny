@@ -14,7 +14,7 @@ if(ctime[1]>0){
 }
 predMat<-NULL
 exportPlot<-NULL
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   fgrModel<-eval(parse(text=paste("model.frame(~",contcov,"+",
@@ -25,10 +25,6 @@ if(input$otherCov=="Yes"){
                                    paste(ifelse(rtable$CateorNot,sapply(rtable$otherCovName,putPara),
                                                 rtable$otherCovName),collapse="+"),
                                    ",data=dataTable)")))
-  # print(paste("model.matrix(intccr::Surv2(v =",timecov1,",u =",timecov2,",event=",stacov,")~",contcov,"+",
-  #             paste(ifelse(rtable$CateorNot,sapply(rtable$otherCovName,putPara),
-  #                          rtable$otherCovName),collapse="+"),
-  #             ",data=dataTable)"))
   fgrMatrix<-data.frame(fgrMatrix[,-1])
   fg2cov<-colnames(fgrMatrix)
   fgrMatrix$time1<-dataTable[,timecov1]
@@ -77,6 +73,5 @@ for(i in 1:21){
 
 exportPlot$surv<-predMat
 exportPlot$time<-ctime
-#print(str(summary(fit)))
 exportPlot$pvalue<-summary(fit)$p[1:length(exportPlot$covNames)]
 exportPlot$effectsize<-summary(fit)$coefficients[1:length(exportPlot$covNames)]

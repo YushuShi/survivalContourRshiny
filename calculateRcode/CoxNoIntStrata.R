@@ -1,5 +1,5 @@
 strataCov<-input$strataCov
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   cox <-eval(parse(text=paste("coxph(Surv(",timecov,",",stacov,") ~ strata(",strataCov,")+",contcov,"+",

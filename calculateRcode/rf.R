@@ -1,4 +1,4 @@
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   modelTrained<-eval(parse(text=paste("rfsrc(Surv(",timecov,",",stacov,") ~ ",contcov,"+",

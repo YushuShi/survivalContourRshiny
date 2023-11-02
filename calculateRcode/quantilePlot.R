@@ -1,5 +1,5 @@
 quantilePlot<-function(predictPlot, dataTable, contcov, mainTitle,covNum, indicator=NULL, strataName=NULL,strataLevel=NULL){
-  if(input$CoxorFG=="noComp"){
+  if(identical(input$CoxorFG,"noComp")){
     if(!identical(input$strata,"yes")){
       p <- plot(predictPlot$time,predictPlot$surv[,covNum],type="l",
                 main =paste0(mainTitle,"(",input$covName,"=",round(contcov[covNum],3), ")"),

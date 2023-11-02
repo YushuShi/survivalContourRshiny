@@ -1,4 +1,4 @@
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   cox <-eval(parse(text=paste('phreg(Surv(',timecov1,',',timecov2,',type="interval2") ~ ',contcov,"+",
@@ -45,7 +45,3 @@ predictPlot<-predictPhreg(cox,newdata = newdata,times=ctime)
 exportPlot$surv<-t(predictPlot$surv)
 exportPlot$upper<-t(predictPlot$surv.upper)
 exportPlot$lower<-t(predictPlot$surv.lower)
-
-#print(predictPlot$surv)
-
-#print(predictPlot$surv.upper)

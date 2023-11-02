@@ -7,8 +7,8 @@ calculatePredict<-function(){
   exportPlot<-NULL
   stacov<-input$status
   contcov<-input$covariate
-  if(input$CoxorFG=="noComp"){
-    if(input$intCen=="noint"){
+  if(identical(input$CoxorFG,"noComp")){
+    if(identical(input$intCen,"noint")){
       timecov<-input$time
       
       if(identical(input$noCompSelect,"Cox")){
@@ -58,7 +58,7 @@ calculatePredict<-function(){
 
   }else{
     # Fine and gray model
-    if(input$intCen=="noint"){
+    if(identical(input$intCen,"noint")){
       source("calculateRcode/FGNoInt.R",local=TRUE)
     }else{
       source("calculateRcode/FGInt.R",local=TRUE)

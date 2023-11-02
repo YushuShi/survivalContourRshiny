@@ -1,4 +1,4 @@
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   if(!identical(input$noCompSelect,"Spline")){
@@ -48,9 +48,9 @@ time<-c(time[time<input$timeSlider],input$timeSlider)
 time<-unique(time)
 time<-time[order(time)]
 predictPlot0<-predict(parModel,newdata = newdata,type="survival",conf.int=TRUE,times=time)
-print(str(predictPlot0))
+
 predictPlot<-list.stack(predictPlot0$.pred)
-str(predictPlot)
+
 exportPlot$surv<-matrix(predictPlot$.pred_survival,nrow=length(time))
 exportPlot$surv<-rbind(rep(1,ncol(exportPlot$surv)),exportPlot$surv)
 exportPlot$upper<-matrix(predictPlot$.pred_upper,nrow=length(time))

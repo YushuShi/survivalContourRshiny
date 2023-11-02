@@ -3,7 +3,7 @@ ctime<-dataTable[,timecov]
 ctime<-c(ctime[ctime<input$timeSlider],input$timeSlider)
 ctime<-unique(ctime)
 ctime<-ctime[order(ctime)]
-if(input$otherCov=="Yes"){
+if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
   fgrModel<-eval(parse(text=paste("model.frame(~",contcov,"+",
