@@ -16,5 +16,7 @@ packages_to_check <- c("shiny","riskRegression","prodlim","survival","intccr","v
                        "plotly","jsonlite","flexsurv","rlist","dplyr","randomForestSRC")
 
 install_missing_packages(packages_to_check)
+
+library(shiny)
 runGitHub( "survivalContourRshiny","YushuShi")
 ```
