@@ -1,4 +1,4 @@
-The shiny app allows users to run stratified Cox model based on one categorical covariate. It will generate predicted survival contour plot for each stratum separately.
+The Shiny app allows users to run stratified Cox model based on one categorical covariate. It will generate predicted survival contour plot for each stratum separately.
 
 ## Stratified Cox model example
 

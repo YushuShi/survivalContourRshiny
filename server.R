@@ -34,6 +34,7 @@ shinyServer(function(input, output,session) {
   output$numTree <- renderUI({
     if(identical(input$noCompSelect,"rf")){
       numericInput("numTree", "Number of trees:", value = 500)
+
     }
   })
   output$intCen <- renderUI({
@@ -150,7 +151,7 @@ shinyServer(function(input, output,session) {
     if(identical(input$otherCov,"Yes")){
       dfcolnames=colnames(df)
       names(dfcolnames)=dfcolnames
-      selectInput("otherCovSelect", "Other coveraites in the model:",
+      selectInput("otherCovSelect", "Other covariates in the model \u2193",
                   dfcolnames, multiple=TRUE)
     }
   })

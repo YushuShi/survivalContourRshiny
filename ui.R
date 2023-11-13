@@ -76,13 +76,14 @@ shinyUI(
                           "Yes, I do." = "Yes"),
                      selected="No"),
         
-        uiOutput("CI3D"),
+ 
         
         # radioButtons("CI3D", "Do you want to show 95% CI for predicted survival in 3D contour plot?(only for Cox model)",
         #              list("No, I don't." = "No",
         #                   "Yes, I do." = "Yes"),
         #              selected="No"),
         uiOutput("otherCovSelect"),
+        uiOutput("CI3D"),
         rhandsontable::rHandsontableOutput("table"),
         tags$br(),
         actionButton("getPlot", "Create Plots"),
@@ -116,6 +117,6 @@ shinyUI(
     hr(),
     HTML(paste(HTML('&emsp;'),"1:",HTML('&nbsp;'),"Department of Population Health Sciences, Weill Cornell Medicine"),'<br>',
          paste(HTML('&emsp;'),"2:",HTML('&nbsp;'),"Department of Population and Quantitative Health Sciences, Case Western Reserve University"),'<br>',
-         paste(HTML('&emsp;'),"3:",HTML('&nbsp;'),"Department of Biostatistics, the University of Texas, MD Anderson Cancer Center"),'<br>',
-         paste(HTML('&emsp;'),"4:",HTML('&nbsp;'),"Department of Genomic Medicine,the University of Texas, MD Anderson Cancer Center"))
+         paste(HTML('&emsp;'),"3:",HTML('&nbsp;'),"Department of Biostatistics, The University of Texas MD Anderson Cancer Center"),'<br>',
+         paste(HTML('&emsp;'),"4:",HTML('&nbsp;'),"Department of Genomic Medicine,The University of Texas MD Anderson Cancer Center"))
   ))
