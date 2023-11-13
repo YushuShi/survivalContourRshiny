@@ -4,6 +4,7 @@ output$drawQuantile<- renderImage({
   predictPlot<-calculatePredict()
   dataTable<-filedata()
   contcov<-seq(input$covSlider[1],input$covSlider[2],length.out = 21)
+
   outFile <- tempfile(fileext = ".png")
   if(!identical(input$strata,"yes")){
     heightScale<-1
@@ -28,12 +29,13 @@ output$drawQuantile<- renderImage({
   }else{
     strataList<-unique(dataTable[,input$strataCov])
     strataList<-strataList[!is.na(strataList)]
+    strataName<-ifelse(identical(input$strataName,""),input$strataCov,input$strataName)
     for(i in 1:length(strataList)){
-      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"min of the \n continuous covariate"),1,i, input$strataName,strataList[i])
-      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"first quantile of the \n continuous covariate"),6,i,input$strataName,strataList[i])
-      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"median of the \n continuous covariate"),11,i, input$strataName,strataList[i])
-      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"third quantile of the \n continuous covariate"),16,i, input$strataName,strataList[i])
-      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"max of the \n continuous covariate"),21,i, input$strataName,strataList[i])
+      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"min of the \n continuous covariate"),1,i, strataName,strataList[i])
+      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"first quantile of the \n continuous covariate"),6,i,strataName,strataList[i])
+      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"median of the \n continuous covariate"),11,i, strataName,strataList[i])
+      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"third quantile of the \n continuous covariate"),16,i, strataName,strataList[i])
+      quantilePlot(predictPlot, dataTable, contcov, paste(heading,"max of the \n continuous covariate"),21,i, strataName,strataList[i])
       plot(1, type="n", axes=F, xlab="", ylab="")        
     }
   }

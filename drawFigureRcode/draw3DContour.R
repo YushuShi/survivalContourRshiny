@@ -5,6 +5,7 @@ output$draw3DContour<- renderPlotly({
   contcov<-seq(input$covSlider[1],input$covSlider[2],length.out = 21)
   yaxisValue<-predictPlot$time
   xaxisValue<-rev(contcov)
+  showCont<-ifelse(identical(input$covName,""),input$covariate,input$covName)
   if(!identical(input$strata,"yes")){
     zaxisValue<-predictPlot$surv
     zaxisValue<-zaxisValue[,rev(1:ncol(zaxisValue))]
@@ -12,11 +13,11 @@ output$draw3DContour<- renderPlotly({
                    x = ~xaxisValue,
                    y = ~yaxisValue,
                    z = zaxisValue,
-                   colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
+                   colorbar = list(title = ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
                                    titleside='right'),
                    colorscale=input$colSche,
-                   hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
-                                         'being %{y:.2f},<br>the predicted', 
+                   hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
+                                         'being %{x:.2f},<br>the predicted', 
                                          ifelse(identical(input$CoxorFG,"noComp"),"survival","CIF") ,'is %{z:.2f}<extra></extra>'))
     if(identical(input$CI3D,"Yes")&(!is.null(predictPlot))){
       upperZ<-predictPlot$upper
@@ -28,7 +29,7 @@ output$draw3DContour<- renderPlotly({
     }
     
     fig <- fig %>% layout(scene = list(xaxis = list(nticks = 8,
-                                                    title=input$covName, range=rev(range(xaxisValue))),
+                                                    title=showCont, range=rev(range(xaxisValue))),
                                        yaxis = list(nticks = 5,title="Time"),
                                        zaxis=list(title=ifelse(identical(input$CoxorFG,"noComp"),"Predicted Survival","Predicted CIF"))
     ))
@@ -47,12 +48,12 @@ output$draw3DContour<- renderPlotly({
                                               titleside='right'),
                               colorscale=input$colSche,
                               scene=paste0('scene',i),
-                              hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
-                                                    'being %{y:.2f},<br>the predicted survival is %{z:.2f}<extra></extra>'))
+                              hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
+                                                    'being %{x:.2f},<br>the predicted survival is %{z:.2f}<extra></extra>'))
       
       eval(parse(text=paste0("plotList[[",i,
                              "]]<-plotList[[",i,"]] %>% layout(scene",ifelse(i>1,i,""),
-                             " = list(xaxis = list(nticks = 8,title=input$covName, range=rev(range(xaxisValue))),",
+                             " = list(xaxis = list(nticks = 8,title=showCont, range=rev(range(xaxisValue))),",
                              "yaxis = list(nticks = 5,title='Time'),zaxis=list(title='Predicted Survival')))"
       )))
       

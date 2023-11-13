@@ -3,13 +3,14 @@ output$drawContour<- renderPlotly({
   dataTable<-filedata()
   predictPlot<-calculatePredict()
   contcov<-seq(input$covSlider[1],input$covSlider[2],length.out = 21)
+  showCont<-ifelse(identical(input$covName,""),input$covariate,input$covName)
   if(!identical(input$strata,"yes")){
     histData<-dataTable[,input$covariate]
     fig <- plot_ly(x = predictPlot$time, y = contcov, z= t(predictPlot$surv),
                    colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
                                    titleside='right'),
                    colorscale=input$colSche,type = "contour",
-                   hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
+                   hovertemplate = paste('At time %{x:.2f} <br>with',showCont,
                                          'being %{y:.2f},<br>the predicted ',
                                          ifelse(identical(input$CoxorFG,"noComp"),"survival","CIF"),
                                          ' is %{z:.2f}<extra></extra>'))
@@ -18,7 +19,7 @@ output$drawContour<- renderPlotly({
                          "Contour Plot of the Predicted Cumulative Incidence Function"),
                          x=0.15),
                   xaxis=list(title="Time",range=range(predictPlot$time)),
-                  yaxis=list(title=input$covName,range=range(contcov)))
+                  yaxis=list(title=showCont,range=range(contcov)))
     
     s <- subplot(fig,
       plot_ly(y = histData, type = "histogram",hoverinfo='none') %>% layout(xaxis=list(title="Count")),
@@ -39,11 +40,11 @@ output$drawContour<- renderPlotly({
                       colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
                                       titleside='right'),
                       colorscale=input$colSche,type = "contour",
-                     hovertemplate = paste('At time %{x:.2f} <br>with',input$covName,
+                     hovertemplate = paste('At time %{x:.2f} <br>with',showCont,
                                            'being %{y:.2f},<br>the predicted survival is %{z:.2f}<extra></extra>'))
       temp <- temp %>% layout(title=list(text="Contour Plot of the Predicted Survival Probability",x=0.15),
         xaxis=list(title="Time",range=range(predictPlot$time)),
-                            yaxis=list(title=input$covName,range=range(contcov)))
+                            yaxis=list(title=showCont,range=range(contcov)))
       if(i>1){
         temp<-temp %>% hide_colorbar()
       }

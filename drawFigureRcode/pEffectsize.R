@@ -4,7 +4,10 @@ output$pEffectsize<- renderTable({
   if(!identical(input$noCompSelect,"rf")){
   dataTable<-filedata()
   predictPlot<-calculatePredict()
-  tableOut<-data.frame(covNames=predictPlot$covNames,pvalue=predictPlot$pvalue,effectsize=predictPlot$effectsize)
+  covNames<-predictPlot$covNames
+  #print(covNames)
+  covNames[covNames==""]<-input$covariate
+  tableOut<-data.frame(covNames=covNames,pvalue=predictPlot$pvalue,effectsize=predictPlot$effectsize)
   colnames(tableOut)<-c("Covariate","p-value","Effect size")
   }
   tableOut
