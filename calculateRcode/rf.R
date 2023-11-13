@@ -1,3 +1,5 @@
+
+
 if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)

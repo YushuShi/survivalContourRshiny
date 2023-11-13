@@ -22,6 +22,9 @@ calculatePredict<-function(){
         exportPlot$effectsize<-round(summary(cox)$coef[,1],2)
       }else{
         if(identical(input$noCompSelect,"rf")){
+          if(!identical(input$numTree>0,TRUE)){
+            warning(safeError("The number of trees must be an integer greater than 0."))
+          }
           source("calculateRcode/rf.R",local=TRUE)
         }else{
           source("calculateRcode/paraNoIntNoStrata.R",local=TRUE)
