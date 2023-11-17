@@ -35,8 +35,8 @@ if(identical(input$otherCov,"Yes")){
   colnames(newdata)<-contcov
   exportPlot$covNames<-input$covName
 }
-newdata<- newdata %>%
-  mutate(across(all_of(colnames(newdata)[!colnames(newdata)%in% c(timecov,stacov)]), as.integer))
+#newdata<- newdata %>%
+#  mutate(across(all_of(colnames(newdata)[!colnames(newdata)%in% c(timecov,stacov)]), as.integer))
 predictOutcome<-predict(modelTrained,newdata)
 
 time<-predictOutcome$time.interest

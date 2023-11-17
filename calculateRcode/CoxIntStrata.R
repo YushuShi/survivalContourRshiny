@@ -1,5 +1,3 @@
-strataCov<-input$strataCov
-
 if(identical(input$otherCov,"Yes")){
   rtable=hot_to_r(input$table)
   validateData(rtable,dataTable)
@@ -10,11 +8,12 @@ if(identical(input$otherCov,"Yes")){
   newdata<-data.frame(cbind(rep(seq(input$covSlider[1],input$covSlider[2],length.out = 21),
                                 length(unique(dataTable[,strataCov]))),
                             rep(unique(dataTable[,strataCov]),each=21),
-                            matrix(rep(rtable$value4Plot,21*length(unique(dataTable[,strataCov])))
+                            matrix(rep(rtable$value4Plot,
+                                       21*length(unique(as.character(dataTable[,strataCov]))))
                                    ,byrow = TRUE,ncol=length(rtable$otherCovName))))
   colnames(newdata)<-c(contcov,strataCov,rtable$otherCovName)
   newdata[,contcov]<-as.numeric(newdata[,contcov])
-  newdata[,strataCov]<-eval(parse(text=paste0("as.",typeof(dataTable[,strataCov]),"(newdata[,strataCov])")))
+  newdata[,strataCov]<-as.factor(newdata[,strataCov])
   for(i in 1:length(rtable$CateorNot)){
     if(!rtable$CateorNot[i]){
       newdata[,rtable$otherCovName[i]]<-as.numeric(newdata[,rtable$otherCovName[i]])
@@ -33,9 +32,10 @@ if(identical(input$otherCov,"Yes")){
   exportPlot$covNames<-c(input$covName,otherCovList)
 }else{
   cox <-eval(parse(text=paste('phreg(Surv(',timecov1,',',timecov2,',type="interval2") ~ strata(',strataCov,')+',contcov,',dataTable)')))
-  newdata<-data.frame(tempcov=rep(seq(input$covSlider[1],input$covSlider[2],length.out = 21),length(unique(dataTable[,strataCov]))),
+  newdata<-data.frame(tempcov=rep(seq(input$covSlider[1],input$covSlider[2],length.out = 21),length(unique(as.character(dataTable[,strataCov])))),
                       stratacov=rep(unique(dataTable[,strataCov]),each=21))
   colnames(newdata)<-c(contcov,strataCov)
+  newdata[,strataCov]<-as.factor(newdata[,strataCov])
   exportPlot$covNames<-input$covName
 }
 

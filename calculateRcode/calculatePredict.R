@@ -10,11 +10,14 @@ calculatePredict<-function(){
   if(identical(input$CoxorFG,"noComp")){
     if(identical(input$intCen,"noint")){
       timecov<-input$time
-      
       if(identical(input$noCompSelect,"Cox")){
         if(!identical(input$strata,"yes")){
           source("calculateRcode/CoxNoIntNoStrata.R",local=TRUE)
         }else{
+          strataCov<-input$strataCov
+          if(!identical(is.factor(dataTable[,strataCov]),TRUE)){
+            dataTable[,strataCov]<-as.factor(dataTable[,strataCov])
+          }
           source("calculateRcode/CoxNoIntStrata.R",local=TRUE)
         }
         exportPlot$time<-time
@@ -49,6 +52,10 @@ calculatePredict<-function(){
         if(!identical(input$strata,"yes")){
           source("calculateRcode/CoxIntNoStrata.R",local=TRUE)
         }else{
+          strataCov<-input$strataCov
+          if(!identical(is.factor(dataTable[,strataCov]),TRUE)){
+            dataTable[,strataCov]<-as.factor(dataTable[,strataCov])
+          }
           source("calculateRcode/CoxIntStrata.R",local=TRUE)
         }
         exportPlot$pvalue<-round(summary(cox)$coef[,4],3)
