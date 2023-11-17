@@ -157,13 +157,20 @@ shinyServer(function(input, output,session) {
   })
   
   observe({
-    if(!is.null(input$otherCovSelect))
+    if(!is.null(input$otherCovSelect)){
+      df <-filedata()
+      tableSelcted<-data.frame(df[,input$otherCovSelect])
+      colnames(tableSelcted)<-input$otherCovSelect
+      CateorNot<-sapply(tableSelcted,class)%in% c("factor","character")
+      value4Plot<-sapply(tableSelcted,function(x) names(table(x))[which.max(table(x))])
+      value4Plot[!CateorNot]<-sapply(data.frame(tableSelcted[,!CateorNot]),median)
       output$table <- renderRHandsontable({rhandsontable(data.frame(otherCovName=input$otherCovSelect,
-                                                                    CateorNot=rep(FALSE,length(input$otherCovSelect)),
-                                                                    value4Plot=rep("0",length(input$otherCovSelect))),
-                                                         rowHeaders = NULL,
-                                                         colHeaders = c("Covariate Name",
-                                                                        "If Categorical click","Value for \n predicting the outcome"))})
+CateorNot=CateorNot,
+value4Plot=value4Plot),
+ rowHeaders = NULL,
+colHeaders = c("Covariate Name",
+"If Categorical click","Value for \n predicting the outcome"))})
+    }
   })
   
   output$strataName <- renderUI({
