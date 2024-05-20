@@ -9,16 +9,26 @@ output$draw3DContour<- renderPlotly({
   if(!identical(input$strata,"yes")){
     zaxisValue<-predictPlot$surv
     zaxisValue<-zaxisValue[,rev(1:ncol(zaxisValue))]
-    fig <- plot_ly(type = 'surface',
-                   x = ~xaxisValue,
-                   y = ~yaxisValue,
-                   z = zaxisValue,
-                   colorbar = list(title = ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
-                                   titleside='right'),
-                   colorscale=input$colSche,
-                   hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
-                                         'being %{x:.2f},<br>the predicted', 
-                                         ifelse(identical(input$CoxorFG,"noComp"),"survival","CIF") ,'is %{z:.2f}<extra></extra>'))
+    # fig <- plot_ly(x = ~xaxisValue,
+    #                y = ~yaxisValue,
+    #                z = zaxisValue)
+    # fig <- plot_ly(x = xaxisValue,
+    #                y = yaxisValue,
+    #                z = zaxisValue)
+    #fig<-fig%>% add_surface()
+    fig <- plot_ly(z = ~volcano)
+    fig <- fig %>% add_surface()
+    #,
+    # fig <- plot_ly(type = 'surface',
+    #                x = ~xaxisValue,
+    #                y = ~yaxisValue,
+    #                z = zaxisValue)#,
+                   # colorbar = list(title = ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
+                   #                 titleside='right'),
+                   # colorscale=input$colSche,
+                   # hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
+                   #                       'being %{x:.2f},<br>the predicted', 
+                   #                       ifelse(identical(input$CoxorFG,"noComp"),"survival","CIF") ,'is %{z:.2f}<extra></extra>'))
     if(identical(input$CI3D,"Yes")&(!is.null(predictPlot))){
       upperZ<-predictPlot$upper
       upperZ<-upperZ[,rev(1:ncol(upperZ))]
@@ -43,13 +53,14 @@ output$draw3DContour<- renderPlotly({
       plotList[[i]]<- plot_ly(type = 'surface',
                               x = ~xaxisValue,
                               y = ~yaxisValue,
-                              z = zaxisValue,
-                              colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
-                                              titleside='right'),
-                              colorscale=input$colSche,
-                              scene=paste0('scene',i),
-                              hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
-                                                    'being %{x:.2f},<br>the predicted survival is %{z:.2f}<extra></extra>'))
+                              z = zaxisValue)
+      # ,
+      #                         colorbar = list(title =                                    ifelse(identical(input$CoxorFG,"noComp"),                                                                              "Predicted survival probability","Predicted CIF"),
+      #                                         titleside='right'),
+      #                         colorscale=input$colSche,
+      #                         scene=paste0('scene',i),
+      #                         hovertemplate = paste('At time %{y:.2f} <br>with',showCont,
+      #                                               'being %{x:.2f},<br>the predicted survival is %{z:.2f}<extra></extra>'))
       
       eval(parse(text=paste0("plotList[[",i,
                              "]]<-plotList[[",i,"]] %>% layout(scene",ifelse(i>1,i,""),

@@ -16,6 +16,7 @@ library(flexsurv)
 library(rlist)
 library(dplyr)
 library(randomForestSRC)
+library(shinybusy)
 shinyServer(function(input, output,session) {
   output$noCompSelect <- renderUI({
     if(identical(input$CoxorFG,"noComp")){
@@ -294,7 +295,7 @@ colHeaders = c("Covariate Name",
 
   source("calculateRcode/quantilePlot.R",local=TRUE)  
 
-    source("drawFigureRcode/pEffectsize.R",local=TRUE)
+  source("drawFigureRcode/pEffectsize.R",local=TRUE)
 
   source("drawFigureRcode/drawContour.R",local=TRUE)
 
@@ -307,6 +308,7 @@ colHeaders = c("Covariate Name",
   source("downloadRcode/downloadResult.R",local=TRUE)  
 
   observeEvent(input$getPlot, {
+    #Sys.sleep(5)
     updateTabsetPanel(session, "outputtab",selected = "Result")
   })
 })

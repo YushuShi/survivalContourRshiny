@@ -1,4 +1,5 @@
 #library(rhandsontable)
+library(shinybusy)
 shinyUI(
   fluidPage(
     headerPanel("SurvivalContour: Show Survival Prediction in Contour Plot"),
@@ -100,8 +101,9 @@ shinyUI(
                                                  #tableOutput("pEffectsize"),
                                                  conditionalPanel(condition="!identical(input.noCompSelect,'rf')",tableOutput("pEffectsize")),
                                                  hr(),
+                                                 add_busy_spinner(spin = "radar", position="full-page"),
                                                  plotly::plotlyOutput("drawContour",height="auto"),
-                                                 hr(),
+                                                 #hr(),
                                                  plotly::plotlyOutput("draw3DContour",height="auto"),
                                                  hr(),
                                                  plotOutput("drawQuantile",inline=TRUE),
