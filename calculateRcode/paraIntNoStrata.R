@@ -58,6 +58,8 @@ predictPlot0<-predict(parModel,newdata = newdata,type="survival",conf.int=TRUE,t
 
 predictPlot<-list.stack(predictPlot0$.pred)
 
+#print(str(tidy(parModel)$pvalue))
+#print(str(summary(parModel)))
 exportPlot$surv<-matrix(predictPlot$.pred_survival,nrow=length(ctime))
 exportPlot$surv<-rbind(rep(1,ncol(exportPlot$surv)),exportPlot$surv)
 exportPlot$upper<-matrix(predictPlot$.pred_upper,nrow=length(ctime))

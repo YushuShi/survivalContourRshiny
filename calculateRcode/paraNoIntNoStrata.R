@@ -50,7 +50,7 @@ time<-time[order(time)]
 predictPlot0<-predict(parModel,newdata = newdata,type="survival",conf.int=TRUE,times=time)
 
 predictPlot<-list.stack(predictPlot0$.pred)
-
+#print(str(parModel))
 exportPlot$surv<-matrix(predictPlot$.pred_survival,nrow=length(time))
 exportPlot$surv<-rbind(rep(1,ncol(exportPlot$surv)),exportPlot$surv)
 exportPlot$upper<-matrix(predictPlot$.pred_upper,nrow=length(time))
