@@ -13,7 +13,8 @@ install_missing_packages <- function(packages) {
 
 packages_to_check <- c("shiny","riskRegression","prodlim","survival","intccr","viridis",
                        "zip","mets","magick","fields","spatstat.utils","rhandsontable",
-                       "plotly","jsonlite","flexsurv","rlist","dplyr","randomForestSRC")
+                       "plotly","jsonlite","flexsurv","rlist","dplyr","randomForestSRC",
+                        "shinybusy")
 
 install_missing_packages(packages_to_check)
 
