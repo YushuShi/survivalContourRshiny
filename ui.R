@@ -77,7 +77,10 @@ shinyUI(
                           "Yes, I do." = "Yes"),
                      selected="No"),
         
- 
+        radioButtons("drawHist", "Do you want to include a histogram?",
+                     list("Yes" = "Yes", "No" = "No"),
+                     selected = "Yes"),
+        
         
         # radioButtons("CI3D", "Do you want to show 95% CI for predicted survival in 3D contour plot?(only for Cox model)",
         #              list("No, I don't." = "No",
