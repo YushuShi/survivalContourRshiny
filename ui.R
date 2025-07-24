@@ -6,7 +6,7 @@ shinyUI(
     HTML(paste(HTML('&emsp;'),"PID:xxx",HTML('&nbsp;'),"Version:1.0",HTML('&nbsp;'), 
                "Last updated:", Sys.Date()),'<br>',
          paste(HTML('&emsp;'),HTML('Yushu Shi<sup>1</sup></strong>,'), HTML('Liangliang Zhang<sup>2</sup>,'),
-               HTML('Kim-Anh Do<sup>3</sup>,'), HTML('Robert Jenq<sup>4</sup>,'), "and", HTML('Christine Peterson<sup>3</sup>')),'<br>',
+               HTML('Kim-Anh Do<sup>3</sup>,'), HTML('Robert Jenq<sup>4</sup>,'), "and", HTML('Christine Peterson<sup>3</sup>',, "and", HTML('Hanzhi Chen<sup>1</sup>')),'<br>',
          paste(HTML('&emsp;'),"Contact email:",HTML('&nbsp;'),HTML('<a>shiyushu2006@gmail.com</a>'))),
     
     sidebarLayout( 
@@ -126,5 +126,5 @@ shinyUI(
     HTML(paste(HTML('&emsp;'),"1:",HTML('&nbsp;'),"Department of Population Health Sciences, Weill Cornell Medicine"),'<br>',
          paste(HTML('&emsp;'),"2:",HTML('&nbsp;'),"Department of Population and Quantitative Health Sciences, Case Western Reserve University"),'<br>',
          paste(HTML('&emsp;'),"3:",HTML('&nbsp;'),"Department of Biostatistics, The University of Texas MD Anderson Cancer Center"),'<br>',
-         paste(HTML('&emsp;'),"4:",HTML('&nbsp;'),"Department of Genomic Medicine,The University of Texas MD Anderson Cancer Center"))
+         paste(HTML('&emsp;'),"4:",HTML('&nbsp;'),"Department of Hematology & Hematopoietic Cell Transplantation, City of Hope"))
   ))
