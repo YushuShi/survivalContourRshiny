@@ -3,7 +3,7 @@ library(shinybusy)
 shinyUI(
   fluidPage(
     headerPanel("SurvivalContour: Show Survival Prediction in Contour Plot"),
-    HTML(paste(HTML('&emsp;'),"PID:xxx",HTML('&nbsp;'),"Version:1.0.2",HTML('&nbsp;'), 
+    HTML(paste(HTML('&emsp;'),"PID:1176",HTML('&nbsp;'),"Version:1.0.2",HTML('&nbsp;'), 
                "Last updated:", "May 13 2025"),'<br>',
          paste(HTML('&emsp;'),HTML('Yushu Shi<sup>1</sup></strong>,'), HTML('Liangliang Zhang<sup>2</sup>,'),
                HTML('Kim-Anh Do<sup>3</sup>,'), HTML('Robert Jenq<sup>4</sup>,'), HTML('Christine Peterson<sup>3</sup>'), "and", HTML('Hanzhi Chen<sup>1</sup>')),'<br>',
